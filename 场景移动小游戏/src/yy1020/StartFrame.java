@@ -120,6 +120,7 @@ public class StartFrame implements gameConfig {
                     st = 1;
                     test.start();
                     jFrame.dispose();
+                    st=0;
                 }
             }
         });

@@ -18,8 +18,11 @@ public class Health {
 	}
 	public void paint(Graphics g){
 		double x=(h/100.0)*500.0;
-		int y=50;
+		int y=40;
+		g.setColor(Color.black);
+		g.fill3DRect((int)((double)gameConfig.frameX*0.3),(int)((double)gameConfig.frameY*0.8), 500, (int)y, false);
 		g.setColor(Color.red);
-		g.fill3DRect((int)((double)gameConfig.frameX*0.2),(int)((double)gameConfig.frameY*0.8), (int)x, (int)y, false);
+		g.fill3DRect((int)((double)gameConfig.frameX*0.3),(int)((double)gameConfig.frameY*0.8), (int)x, (int)y, false);
+		
 	}
 }

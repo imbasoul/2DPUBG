@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class Endpanel extends JPanel implements gameConfig{
-
+	JPanel buttonpanel;
 	/**
 	 * 
 	 */
@@ -32,26 +32,38 @@ public class Endpanel extends JPanel implements gameConfig{
 		//this.setOpaque(false);//设置面板透明
 		
 		
-		JButton on = new JButton();
-        on.setSize(new Dimension(350, 120));
-        on.setLocation(280, 300);
-        on.setIcon(new ImageIcon("img\\mainmenu.png"));
-       // on.mouseUp(new Event(0, 0, 0), 280, 300);
-        on.addActionListener(new AbstractAction() { 
-			@Override
-            public void actionPerformed(ActionEvent e) {
-                test.mf.dispose();
-            }
-        });
-        this.add(on);
+		
 	}
 	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		ImageIcon bg=new ImageIcon("img\\endbg.png");
+		ImageIcon bg=new ImageIcon("img\\endbg.jpg");
 		g.drawImage(bg.getImage(), 0, 0, frameX, frameY, null);
-		
+		ImageIcon gg=new ImageIcon("img\\gameover.png");
+		g.drawImage(gg.getImage(), 230,200, 500, 200, null);
+		buttonpanel=new JPanel();
+		buttonpanel.setLayout(null);
+		buttonpanel.setBounds(230, 500, 500, 200);
+		buttonpanel.setVisible(true);
+		JButton on = new JButton();
+        on.setSize(new Dimension(500, 200));
+        on.setLocation(0, 0);
+        on.setIcon(new ImageIcon("img\\exit.png"));
+       // on.mouseUp(new Event(0, 0, 0), 280, 300);
+        on.addActionListener(new AbstractAction() { 
+			@Override
+            public void actionPerformed(ActionEvent e) {
+                
+				test.mf.dispose();
+				//StartFrame startFrame=new StartFrame();
+				System.exit(0);
+				//mainFrame.tag=1;
+				//StartFrame startFrame=new StartFrame();
+            }
+        });
+        buttonpanel.add(on);
+		this.add(buttonpanel);
 		/*
 			g.setColor(Color.BLUE);
 			Font font = new Font("黑体", 600, 25);

@@ -12,9 +12,9 @@ import javax.swing.JPanel;
 public class UpdateThread extends Thread{
 	JPanel panel;
 	JPanel tpanel;
-	JPanel endpanel;
+	Endpanel endpanel;
 	public static Dsz dsz0;
-	public UpdateThread(JPanel panel,JPanel tpanel,JPanel epanel) {
+	public UpdateThread(JPanel panel,JPanel tpanel,Endpanel epanel) {
 		this.panel = panel;
 		this.tpanel = tpanel;
         dsz0 = new Dsz(Player.x, Player.y, 0);
@@ -45,13 +45,19 @@ public class UpdateThread extends Thread{
 	public void run() {
 		while(true){
 			if(mainFrame.tag==1){//如果是在走路状态就刷新游戏地图面板
+				panel.setVisible(true);
 				panel.repaint();
+				//System.out.println("tag==1");
 			}else if(mainFrame.tag==2){//如果是在对话的状态就刷新对话框面板
 				tpanel.repaint();
 			}
 			else if(mainFrame.tag==3) {
 				endpanel.setVisible(true);
-				endpanel.repaint();
+				//endpanel.repaint();
+				panel.setVisible(false);
+				//System.out.println("tag==3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				//endpanel.updateUI();
+				
 				break;
 			}
 			try {

@@ -99,7 +99,7 @@ public class Bullet implements Runnable{
             }
             if(tag==2) {
             		if(isLive==true) {
-            			if(getI()-1==Player.getI()&&getJ()-1==Player.getJ()) {
+            			if(getI()==Player.getI()&&getJ()==Player.getJ()) {
             				Player.health.de(1.0);
             				isLive=false;
             				break;

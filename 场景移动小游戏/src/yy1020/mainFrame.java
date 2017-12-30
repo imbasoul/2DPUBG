@@ -32,7 +32,7 @@ public class mainFrame extends JFrame implements gameConfig{
 	//¶Ô»°Ãæ°å
 	JPanel tpanel;
 	
-	JPanel epanel;
+	Endpanel epanel;
 	public static Dsz dsz1;
 	public static int bnum = 0;
 	public mainFrame() {
