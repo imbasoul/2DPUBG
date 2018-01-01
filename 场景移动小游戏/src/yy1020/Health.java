@@ -9,7 +9,9 @@ public class Health {
 		h=100.0;
 	}
 	public void inc(double x) {
-		h+=x;
+		if(h<100.0) {
+			h+=x;
+		}
 		return;
 	}
 	public void de(double x){

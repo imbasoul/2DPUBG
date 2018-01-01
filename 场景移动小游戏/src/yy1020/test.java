@@ -43,7 +43,7 @@ public class test {
     }*/
 	public static void start() {
 		//首先从地图文件中读入地图数组
-				ReadMapFile.readfile("map1.map");
+				ReadMapFile.readfile("mymap.map");
 				//用读到的地图数组创建游戏窗体，开始游戏
 				mf = new mainFrame();
 				Circle circle = new Circle();

@@ -241,7 +241,7 @@ public class Dsz implements Runnable{
 	public int y;
 	public int num;
 	public int health;
-	public boolean islive;
+	public boolean islive=false;
 	public Bullet bullet[]=new Bullet[5];
 
 	public Dsz(){};
