@@ -90,11 +90,19 @@ public class Client extends Socket {
                     	System.out.println("Bullet");
                     	MsgBullet tmp = JSON.parseObject(reply, MsgBullet.class);
                     	// 只接收其它客户端发来的消息
-                    	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;
-                    	mainFrame.dsz1.bullet[tmp.getId()] = new Bullet().fromMsg(tmp);
-                    	Thread thb=new Thread(mainFrame.dsz1.bullet[tmp.getId()]);
-                    	thb.start();
-                    	System.out.println("Bu " + "【" + tmp.getX() + "," + tmp.getY() + "】");
+                    	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;                    	               
+                    	
+                    	/**需要修改**/
+                    	for(Dsz dsz : mainFrame.dsz1){
+                    		if(dsz.getPort() == tmp.getPort()){
+                    			dsz.bullet[tmp.getId()] = new Bullet().fromMsg(tmp);
+                    			Thread thb = new Thread(dsz.bullet[tmp.getId()]);
+                    			thb.start();
+                    			break;
+                    		}
+                    	}
+                    	
+//                    	System.out.println("Bu " + "【" + tmp.getX() + "," + tmp.getY() + "】");
                     }
                     //Character消息
                     else{
@@ -104,7 +112,21 @@ public class Client extends Socket {
                     	else{
                     		// 只接收其它客户端发来的消息
                         	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;
-                        	mainFrame.dsz1.fromMsg(tmp);
+                        	
+                        	
+                        	/**需要修改**/
+                        	for(Dsz dsz : mainFrame.dsz1){
+                        		if(dsz.getPort() == 0){
+                        			dsz.setPort(tmp.getPort());
+                        			dsz.fromMsg(tmp);
+                        			break;
+                        		}
+                        		if(dsz.getPort() == tmp.getPort()){
+                        			dsz.fromMsg(tmp);
+                        			break;
+                        		}
+                        	}
+                        	
 //                            System.out.println( "Ch" + " 【" + mainFrame.dsz1.x + ", " + mainFrame.dsz1.y + "】");
                     	}
                     }
