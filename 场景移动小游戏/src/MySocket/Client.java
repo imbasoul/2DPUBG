@@ -92,19 +92,11 @@ public class Client extends Socket {
 //                    	System.out.println("Bullet");
                     	MsgBullet tmp = JSON.parseObject(reply, MsgBullet.class);
                     	// Ö»½ÓÊÕÆäËü¿Í»§¶Ë·¢À´µÄÏûÏ¢
-                    	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;                    	               
-                    	
-                    	/**ÐèÒªÐÞ¸Ä**/
-                    	for(Dsz dsz : mainFrame.dsz1){
-                    		if(dsz.getPort() == tmp.getPort()){
-                    			dsz.bullet[tmp.getId()] = new Bullet().fromMsg(tmp);
-                    			Thread thb = new Thread(dsz.bullet[tmp.getId()]);
-                    			thb.start();
-                    			break;
-                    		}
-                    	}
-                    	
-//                    	System.out.println("Bu " + "¡¾" + tmp.getX() + "," + tmp.getY() + "¡¿");
+                    	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;
+                    	mainFrame.dsz1.bullet[tmp.getId()] = new Bullet().fromMsg(tmp);
+                    	Thread thb=new Thread(mainFrame.dsz1.bullet[tmp.getId()]);
+                    	thb.start();
+                    	System.out.println("Bu " + "¡¾" + tmp.getX() + "," + tmp.getY() + "¡¿");
                     }
                     
                     //PoiÏûÏ¢, kind = 3
@@ -129,6 +121,7 @@ public class Client extends Socket {
                     	else{
                     		// Ö»½ÓÊÕÆäËü¿Í»§¶Ë·¢À´µÄÏûÏ¢
                         	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;
+<<<<<<< HEAD
                         	
                         	
                         	/**ÐèÒªÐÞ¸Ä**/
@@ -143,6 +136,9 @@ public class Client extends Socket {
                         			break;
                         		}
                         	}	
+=======
+                        	mainFrame.dsz1.fromMsg(tmp);
+>>>>>>> parent of e76671c... 18ï¼š17
 //                            System.out.println( "Ch" + " ¡¾" + mainFrame.dsz1.x + ", " + mainFrame.dsz1.y + "¡¿");
                     	}
                     }
