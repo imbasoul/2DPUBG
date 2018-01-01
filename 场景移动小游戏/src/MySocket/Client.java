@@ -1,16 +1,21 @@
 package MySocket;
 
+import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.net.Socket;
+
 import com.alibaba.fastjson.JSON;
 
 import yy1020.Bullet;
+import yy1020.Circle;
 import yy1020.Dsz;
+import yy1020.Poi;
 import yy1020.UpdateThread;
 import yy1020.mainFrame;
-
-import java.io.*;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Timer;
 
 public class Client extends Socket {
     private static final String Server_IP = "123.206.27.121"; // 服务端IP
@@ -79,15 +84,12 @@ public class Client extends Socket {
             try {
                 this.reader = new BufferedReader(new InputStreamReader(client.getInputStream(), "UTF-8"));
                 while(true){
+                	//接收到服务端消息 reply
                     String reply = reader.readLine();
-              
-//                    System.out.println("reply: " + reply);
                     
-//                    System.out.println("@@@kind: " + reply.substring(30, 31) + reply.substring(30, 31).equals("2"));
-                    
-                    //Bullet消息
+                    //Bullet消息, kind = 2
                     if(reply.substring(30, 31).equals("2")){
-                    	System.out.println("Bullet");
+//                    	System.out.println("Bullet");
                     	MsgBullet tmp = JSON.parseObject(reply, MsgBullet.class);
                     	// 只接收其它客户端发来的消息
                     	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;                    	               
@@ -104,7 +106,22 @@ public class Client extends Socket {
                     	
 //                    	System.out.println("Bu " + "【" + tmp.getX() + "," + tmp.getY() + "】");
                     }
-                    //Character消息
+                    
+                    //Poi消息, kind = 3
+                    else if(reply.substring(9, 10).equals("3")){
+                    	System.out.println("##开始缩小毒圈！！##");
+                    	
+//                    	List<Poi> pointList = JSON.parseArray(reply, Poi.class);
+//                    	Poi[] pointArray = new Poi[6];
+//                    	pointList.toArray(pointArray);
+//                    	
+//                    	Circle circle = new Circle();
+//                    	circle.setPoint(pointArray);
+//        				Thread thcir = new Thread(circle);
+//        				thcir.start();
+                    }
+                    
+                    //Character消息, kind = 1
                     else{
 //                    	System.out.println("Character");
                     	MsgCharacter tmp = JSON.parseObject(reply, MsgCharacter.class);
@@ -125,12 +142,10 @@ public class Client extends Socket {
                         			dsz.fromMsg(tmp);
                         			break;
                         		}
-                        	}
-                        	
+                        	}	
 //                            System.out.println( "Ch" + " 【" + mainFrame.dsz1.x + ", " + mainFrame.dsz1.y + "】");
                     	}
                     }
-                   
                 }
             } catch (IOException e) {
                 e.printStackTrace();
