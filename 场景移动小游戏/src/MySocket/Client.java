@@ -97,6 +97,7 @@ public class Client extends Socket {
                     	Thread thb=new Thread(mainFrame.dsz1.bullet[tmp.getId()]);
                     	thb.start();
                     	System.out.println("Bu " + "¡¾" + tmp.getX() + "," + tmp.getY() + "¡¿");
+<<<<<<< HEAD
                     }
                     
                     //PoiÏûÏ¢, kind = 3
@@ -111,6 +112,8 @@ public class Client extends Socket {
 //                    	circle.setPoint(pointArray);
 //        				Thread thcir = new Thread(circle);
 //        				thcir.start();
+=======
+>>>>>>> parent of e76671c... 18ï¼š17
                     }
                     
                     //CharacterÏûÏ¢, kind = 1
@@ -121,6 +124,7 @@ public class Client extends Socket {
                     	else{
                     		// Ö»½ÓÊÕÆäËü¿Í»§¶Ë·¢À´µÄÏûÏ¢
                         	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;
+<<<<<<< HEAD
 <<<<<<< HEAD
                         	
                         	
@@ -136,6 +140,9 @@ public class Client extends Socket {
                         			break;
                         		}
                         	}	
+=======
+                        	mainFrame.dsz1.fromMsg(tmp);
+>>>>>>> parent of e76671c... 18ï¼š17
 =======
                         	mainFrame.dsz1.fromMsg(tmp);
 >>>>>>> parent of e76671c... 18ï¼š17
