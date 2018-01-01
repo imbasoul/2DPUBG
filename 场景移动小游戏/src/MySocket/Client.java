@@ -101,10 +101,12 @@ public class Client extends Socket {
 //                    	System.out.println("Character");
                     	MsgCharacter tmp = JSON.parseObject(reply, MsgCharacter.class);
                     	if(tmp == null) System.out.println("MsgCharacter Fuck");
-                    	// 只接收其它客户端发来的消息
-                    	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;
-                    	mainFrame.dsz1.fromMsg(tmp);
-//                        System.out.println( "Ch" + " 【" + mainFrame.dsz1.x + ", " + mainFrame.dsz1.y + "】");
+                    	else{
+                    		// 只接收其它客户端发来的消息
+                        	if(tmp.getPort() == UpdateThread.dsz0.getPort()) continue;
+                        	mainFrame.dsz1.fromMsg(tmp);
+//                            System.out.println( "Ch" + " 【" + mainFrame.dsz1.x + ", " + mainFrame.dsz1.y + "】");
+                    	}
                     }
                    
                 }
@@ -122,18 +124,4 @@ public class Client extends Socket {
             }
         }
     }
-
-    /**
-     * 入口
-     * @param args
-     */
-//    public static void main(String[] args) {
-//        try {
-//            Client client = new Client(); // 启动客户端
-////            MoveMsg msg = new MoveMsg(10, 10);
-//            client.load();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }

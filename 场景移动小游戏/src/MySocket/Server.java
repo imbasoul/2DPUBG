@@ -7,14 +7,16 @@ import yy1020.mainFrame;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 
 public class Server extends ServerSocket {
     private static final int Server_Port = 610;
 
-    //定义一个容量为5的线程池
+    //定义一个容量为50的线程池
     private static ExecutorService service = Executors.newFixedThreadPool(50);
 
     private static CopyOnWriteArrayList<String> userList = new CopyOnWriteArrayList<String>();
@@ -110,8 +112,12 @@ public class Server extends ServerSocket {
                 while(true){
                     String msg = reader.readLine();
                     if(msg==null) System.out.println("Server.Task.run.msg Fuck");
-                    System.out.println(msg);
-                    pushMsg(msg);
+                    else {
+                    	Date day = new Date();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");                  
+                        System.out.println(dateFormat.format(day) + msg);
+                        pushMsg(msg);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
